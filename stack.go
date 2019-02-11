@@ -1,14 +1,14 @@
 package DataStructure
 
-type stack struct {
+type Stack struct {
 	value interface{}
-	next  *stack
+	next  *Stack
 }
 
-func (s stack) Pull() stack {
+func (s Stack) Pull() Stack {
 	return *s.next
 }
 
-func (s stack) Push(stackValue interface{}) {
-	s = stack{value: stackValue, next: &s}
+func (s Stack) Push(stackValue interface{}) {
+	s = Stack{value: stackValue, next: &s}
 }
