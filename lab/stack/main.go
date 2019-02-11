@@ -4,43 +4,55 @@ import (
 	"fmt"
 )
 
-type Stack struct {
-	Value interface{}
-	Next  *Stack
-}
-
-func (s *Stack) New(value interface{}) {
-	s = &Stack{
-		Value: value,
+type (
+	Stack struct {
+		top    *node
+		length int
 	}
+	node struct {
+		value interface{}
+		prev  *node
+	}
+)
+
+func New() *Stack {
+	return &Stack{nil, 0}
+}
+func (this *Stack) Len() int {
+	return this.length
+}
+func (this *Stack) Peek() interface{} {
+	if this.length == 0 {
+		return nil
+	}
+	return this.top.value
 }
 
-func (s *Stack) Pull() interface{} {
-	value := s.Value
-	s = s.Next
-	return value
+func (this *Stack) Pop() interface{} {
+	if this.length == 0 {
+		return nil
+	}
+
+	n := this.top
+	this.top = n.prev
+	this.length--
+	return n.value
 }
 
-func (s *Stack) Push(stackValue interface{}) {
-	s = &Stack{Value: stackValue, Next: s}
-	fmt.Println(s)
+func (this *Stack) Push(value interface{}) {
+	n := &node{value, this.top}
+	this.top = n
+	this.length++
 }
 
 func main() {
-	stack := Stack{}
+	stack := New()
 
-	stack.New("Navid")
-
-	fmt.Println("PPPPP")
-	p := &stack
-	fmt.Println(*p)
-	fmt.Println(stack)
-
+	stack.Push("Navid")
 	stack.Push("David")
 	stack.Push("Hassan")
 
-	fmt.Println(stack)
-	fmt.Println(stack.Pull())
-	fmt.Println(stack.Pull())
-	fmt.Println(stack.Pull())
+	fmt.Println(stack.Pop())
+	fmt.Println(stack.Pop())
+	fmt.Println(stack.Pop())
 }
