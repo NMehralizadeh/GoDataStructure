@@ -52,7 +52,14 @@ func main() {
 	stack.Push("David")
 	stack.Push("Hassan")
 
+	fmt.Println(stack.Len())
+	fmt.Println(stack.Peek())
+	fmt.Println(stack.Len())
 	fmt.Println(stack.Pop())
+	fmt.Println(stack.Len())
 	fmt.Println(stack.Pop())
+	fmt.Println(stack.Len())
+	fmt.Println(stack.Pop())
+	fmt.Println(stack.Len())
 	fmt.Println(stack.Pop())
 }
