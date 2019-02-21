@@ -20,14 +20,14 @@ func (this *Stack) Len() int {
 }
 
 func (this *Stack) Peek() interface{} {
-	if this.length == 0 {
+	if this.Len() == 0 {
 		return nil
 	}
 	return this.top.value
 }
 
 func (this *Stack) Pop() interface{} {
-	if this.length == 0 {
+	if this.Len() == 0 {
 		return nil
 	}
 
